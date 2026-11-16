@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/HesapOzeti.Mcp/HesapOzeti.Mcp.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/HesapOzeti.Mcp.Tests/HesapOzeti.Mcp.Tests.csproj" />
+  </Folder>
+</Solution>
