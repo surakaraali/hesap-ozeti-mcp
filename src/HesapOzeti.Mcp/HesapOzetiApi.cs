@@ -126,7 +126,7 @@ public static class ApiErrors
         $"Hesap Özeti API {HesapOzetiApi.Timeout.TotalSeconds:0} saniye içinde yanıt vermedi. Bir kez daha denenebilir; yine olursa {DoNotGuess}";
 
     public const string Unreachable =
-        "Hesap Özeti API'ye bağlanılamadı (çalışmıyor ya da HESAP_OZETI_API_URL yanlış). Tekrar denemek işe yaramaz; " + DoNotGuess;
+        "Hesap Özeti API'ye bağlanılamadı (çalışmıyor ya da HESAP_OZETI_API_URL yanlış). Tekrar denemek işe yaramaz. " + DoNotGuess;
 
     public const string UnexpectedBody = "Hesap Özeti API beklenmeyen bir yanıt döndürdü. " + DoNotGuess;
 
@@ -134,7 +134,7 @@ public static class ApiErrors
     {
         HttpStatusCode.Unauthorized =>
             "API token'ı geçersiz ya da süresi dolmuş (401). Kullanıcı yeni bir token alıp HESAP_OZETI_TOKEN ortam değişkenine "
-            + "koymalı ve MCP sunucusunu yeniden başlatmalı. Tekrar denemek işe yaramaz; " + DoNotGuess,
+            + "koymalı ve MCP sunucusunu yeniden başlatmalı. Tekrar denemek işe yaramaz. " + DoNotGuess,
         HttpStatusCode.Forbidden =>
             "Bu token'ın bu veriyi okuma yetkisi yok (403). Kullanıcı yetkili bir token almalı. " + DoNotGuess,
         HttpStatusCode.NotFound =>

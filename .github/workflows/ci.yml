@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: "1"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Formatting
+        run: dotnet format --verify-no-changes --no-restore
+
+      - name: Build (warnings are errors)
+        run: dotnet build --no-restore -warnaserror
+
+      - name: Tests
+        run: dotnet test --no-build --logger "console;verbosity=normal"
+
+      - name: The server refuses to start without a token
+        run: |
+          set +e
+          out=$(env -u HESAP_OZETI_TOKEN dotnet src/HesapOzeti.Mcp/bin/Debug/net10.0/HesapOzeti.Mcp.dll 2>&1 < /dev/null)
+          code=$?
+          echo "$out"
+          test $code -eq 1 && echo "$out" | grep -q HESAP_OZETI_TOKEN
